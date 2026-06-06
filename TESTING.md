@@ -1,5 +1,7 @@
 # Testing
 
+> Hintro Meeting Intelligence. [Live app](https://hintro-meeting-intelligence.vercel.app) · [API](https://hintro-meeting-intelligence-i2zr.onrender.com) · [Swagger](https://hintro-meeting-intelligence-i2zr.onrender.com/api/docs) · [Repo](https://github.com/ghostiee-11/hintro-meeting-intelligence). Full overview and requirements coverage in [README](./README.md).
+
 ## How to run
 
 ```bash

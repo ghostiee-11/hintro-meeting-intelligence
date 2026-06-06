@@ -1,5 +1,7 @@
 # AI Approach
 
+> Hintro Meeting Intelligence. [Live app](https://hintro-meeting-intelligence.vercel.app) · [API](https://hintro-meeting-intelligence-i2zr.onrender.com) · [Swagger](https://hintro-meeting-intelligence-i2zr.onrender.com/api/docs) · [Evaluation](https://hintro-meeting-intelligence-i2zr.onrender.com/api/evaluation) · [Repo](https://github.com/ghostiee-11/hintro-meeting-intelligence). Full overview and requirements coverage in [README](./README.md).
+
 This document explains how the service generates meeting insights and, more importantly, how it guarantees those insights are grounded in the transcript rather than hallucinated.
 
 ## Goal

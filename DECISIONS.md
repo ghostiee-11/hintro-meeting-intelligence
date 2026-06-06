@@ -1,5 +1,7 @@
 # Technical Decisions
 
+> Hintro Meeting Intelligence. [Live app](https://hintro-meeting-intelligence.vercel.app) · [API](https://hintro-meeting-intelligence-i2zr.onrender.com) · [Swagger](https://hintro-meeting-intelligence-i2zr.onrender.com/api/docs) · [Evaluation](https://hintro-meeting-intelligence-i2zr.onrender.com/api/evaluation) · [Repo](https://github.com/ghostiee-11/hintro-meeting-intelligence). Full overview and requirements coverage in [README](./README.md).
+
 This document records the important technical decisions, the alternatives considered, and the trade-offs. The guiding principle throughout was the assignment's own note: a simple, well-engineered solution is preferred over an overly complex one.
 
 ## Backend framework: FastAPI
