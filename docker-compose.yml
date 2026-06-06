@@ -1,0 +1,54 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: hintro
+      POSTGRES_PASSWORD: hintro
+      POSTGRES_DB: hintro
+    ports:
+      # Host 5433 avoids clashing with a native Postgres on 5432.
+      - "5433:5432"
+    volumes:
+      - hintro_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hintro"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+asyncpg://hintro:hintro@db:5432/hintro
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: local-dev-secret-change-me
+      CRON_SECRET: local-cron-secret
+      CORS_ORIGIN: "*"
+      ENVIRONMENT: development
+      PORT: "8000"
+      # Provide GEMINI_API_KEY / GROQ_API_KEY / TELEGRAM_* / DISCORD_* via your shell or an .env file.
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL:-}
+    ports:
+      - "8000:8000"
+
+volumes:
+  hintro_pgdata:

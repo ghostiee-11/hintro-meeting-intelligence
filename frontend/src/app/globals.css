@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.99 0.004 250);
+  --foreground: oklch(0.21 0.02 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.02 265);
+  --muted: oklch(0.96 0.006 260);
+  --muted-foreground: oklch(0.52 0.02 260);
+  --primary: oklch(0.58 0.11 172);
+  --primary-foreground: oklch(0.99 0.02 175);
+  --accent: oklch(0.68 0.12 215);
+  --border: oklch(0.91 0.01 260);
+  --input: oklch(0.91 0.01 260);
+  --ring: oklch(0.58 0.11 172);
+  --success: oklch(0.62 0.16 150);
+  --warning: oklch(0.75 0.15 75);
+  --danger: oklch(0.6 0.22 25);
+  --radius: 0.85rem;
+}
+
+.dark {
+  --background: oklch(0.16 0.015 265);
+  --foreground: oklch(0.96 0.01 260);
+  --card: oklch(0.2 0.018 265);
+  --card-foreground: oklch(0.96 0.01 260);
+  --muted: oklch(0.26 0.02 265);
+  --muted-foreground: oklch(0.68 0.02 260);
+  --primary: oklch(0.74 0.12 174);
+  --primary-foreground: oklch(0.17 0.03 180);
+  --accent: oklch(0.74 0.12 210);
+  --border: oklch(0.3 0.02 265);
+  --input: oklch(0.32 0.02 265);
+  --ring: oklch(0.74 0.12 174);
+  --success: oklch(0.7 0.15 150);
+  --warning: oklch(0.8 0.15 75);
+  --danger: oklch(0.68 0.2 25);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 0.25rem);
+  --radius-sm: calc(var(--radius) - 0.4rem);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient gradient backdrop used on marketing and auth screens. */
+.aurora {
+  background:
+    radial-gradient(60% 50% at 20% 10%, oklch(0.6 0.13 172 / 0.18), transparent 60%),
+    radial-gradient(50% 45% at 85% 20%, oklch(0.68 0.12 210 / 0.16), transparent 60%),
+    radial-gradient(60% 60% at 60% 90%, oklch(0.62 0.12 150 / 0.12), transparent 60%);
+}
+
+.glass {
+  backdrop-filter: blur(12px);
+  background: color-mix(in oklch, var(--card) 70%, transparent);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+.animate-spotlight {
+  animation: spotlight 2s ease 0.75s 1 forwards;
+}
+
+/* Spinner used by the Spline 3D loader fallback. */
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid color-mix(in oklch, var(--foreground) 20%, transparent);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklch, var(--foreground) 6%, transparent),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
