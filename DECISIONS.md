@@ -55,7 +55,7 @@ This document records the important technical decisions, the alternatives consid
 
 **Chosen:** Two integrations. Telegram is two-way (inline buttons update status from chat); Discord posts rich embeds.
 **Alternatives:** A single integration (the minimum), email.
-**Why:** Telegram needs no domain or inbound webhook config to send, is free, and supports interactive buttons for a genuinely two-way workflow. Discord webhooks are trivial and visually clear. Doing two exceeds the requirement and de-risks the demo if one is misconfigured.
+**Why:** Telegram needs no domain or inbound webhook config to send, is free, and supports interactive buttons for a genuinely two-way workflow. It also doubles as a conversational assistant (Groq) that answers questions grounded in the user's data and can log a meeting from a pasted transcript or an uploaded file. Discord webhooks are trivial and visually clear. Doing two exceeds the requirement and de-risks the demo if one is misconfigured.
 **Trade-offs:** Two sets of credentials. Both degrade gracefully: if a channel is unconfigured, it is skipped and recorded, never crashing the job.
 
 ## Scheduler: GitHub Actions cron

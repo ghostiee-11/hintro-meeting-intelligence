@@ -2,6 +2,17 @@
 
 All notable implementation milestones for the Hintro Meeting Intelligence Service.
 
+## 1.1.0 — Live deployment + conversational Telegram
+
+- Deployed the API to Render (Docker) with managed PostgreSQL + pgvector and a Render Key Value (Redis) instance; deployed the web app to Vercel. Both publicly accessible with CORS open.
+- Provisioned Postgres and Redis and wired all environment variables via the Render API; migrations run automatically on container start.
+- Enabled the GitHub Actions reminder cron against the live API (API_URL + CRON_SECRET secrets); verified real reminder delivery to Telegram.
+- Switched the primary model to `gemini-2.5-flash` and embeddings to `gemini-embedding-001` (768-dim) for available free-tier quota; Groq remains the automatic fallback (and served analysis live when Gemini quota was exhausted).
+- Redis now live: caching and rate limiting active (rate limiting verified returning HTTP 429).
+- Conversational Telegram assistant powered by Groq: answers questions grounded in the user's meetings and action items, and supports logging a meeting by pasting a transcript or uploading a `.txt` / `.vtt` / `.srt` file (server-side transcript parser added).
+- Web app: natural transcript input (paste any common format) plus file upload; emerald/teal brand palette and a custom waveform logo; sample transcripts under `frontend/public/samples`.
+- Seeded the production database with realistic meetings, analyses, and action items.
+
 ## 1.0.0
 
 ### Foundation

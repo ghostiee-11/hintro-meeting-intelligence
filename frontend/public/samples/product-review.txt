@@ -1,0 +1,7 @@
+[00:00] Priya: Thanks for joining the Q3 product review.
+[00:15] Priya: Our top priority for Q3 is the reminders integration.
+[00:32] John: We decided to prioritize Telegram before Slack.
+[00:48] Alice: I will draft the integration spec by next Monday.
+[01:05] Bob: We should add load tests to CI as a follow-up.
+[01:20] Priya: I will present the roadmap to leadership on the 20th.
+[01:38] John: Let us revisit pricing after the launch.

@@ -68,4 +68,8 @@ The net effect: unsupported or hallucinated content cannot reach a stored insigh
 - **Grounding verifies provenance, not truth.** It confirms a statement is supported by the cited segment; it does not fact-check the speaker.
 - **Index drift.** Citations are resolved at analysis time against the stored segment ordinals; transcripts are immutable after creation, so indices remain stable.
 - **LLM quality varies by provider.** The fallback (Groq) may produce slightly different phrasing than Gemini; grounding verification is applied identically to both.
-- **Embeddings are best-effort.** If no embedding key is configured, semantic search falls back to keyword search and the embedding step is skipped without failing analysis.
+- **Embeddings are best-effort.** Segment embeddings use Gemini `gemini-embedding-001` requested at 768 dimensions (to fit the `pgvector(768)` column). If no key is configured or the quota is exhausted, semantic search transparently falls back to keyword search and the embedding step is skipped without failing analysis.
+
+## Conversational assistant (Telegram)
+
+Separate from the grounded analysis pipeline, the Telegram bot uses Groq for free-form chat. Its system prompt is constrained to answer **only** from a compact context built from the user's own meetings and action items (recent summaries, decisions, and open/overdue items), so replies stay grounded in real data rather than inventing facts. The same bot reuses the deterministic analysis pipeline when a user pastes a transcript or uploads a file, so meetings logged from chat get the identical grounding guarantee as those created in the web app.

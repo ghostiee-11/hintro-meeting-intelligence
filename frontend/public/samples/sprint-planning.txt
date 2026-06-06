@@ -1,0 +1,9 @@
+John: Welcome everyone. The main goal today is to lock the launch date.
+Alice: I think we should launch next Friday once QA signs off.
+John: Agreed, we will launch next Friday.
+Bob: For the backend we decided to use PostgreSQL for the new service.
+Alice: I will prepare the release notes by Wednesday.
+Bob: I will set up the staging environment before the launch.
+Priya: Let us follow up on the marketing plan early next week.
+John: Great. Carol, can you own the smoke tests after deploy?
+Carol: Yes, I will run the smoke tests right after we ship.

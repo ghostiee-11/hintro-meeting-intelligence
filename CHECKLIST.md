@@ -1,9 +1,16 @@
 # Submission Checklist
 
+Live URLs:
+- Web app: https://hintro-meeting-intelligence.vercel.app
+- API: https://hintro-meeting-intelligence-i2zr.onrender.com
+- Swagger: https://hintro-meeting-intelligence-i2zr.onrender.com/api/docs
+- Evaluation: https://hintro-meeting-intelligence-i2zr.onrender.com/api/evaluation
+- Repo: https://github.com/ghostiee-11/hintro-meeting-intelligence
+
 ## Core Requirements
 
 - [x] Public GitHub repository submitted
-- [x] Application deployable publicly (Render blueprint + Vercel; see README)
+- [x] Application deployed and accessible publicly (Render API + Vercel web)
 - [x] README contains setup and run instructions
 - [x] Authentication implemented (JWT)
 - [x] Database models designed and documented (DECISIONS.md, Alembic migration)
@@ -17,34 +24,37 @@
 - [x] Overdue action item detection implemented
 - [x] Scheduled reminder job implemented
 - [x] One real third-party integration implemented (Telegram + Discord)
-- [x] Reminder notifications delivered through integration
+- [x] Reminder notifications delivered through integration (Telegram, verified live)
 - [x] Unit tests implemented
 - [x] Input validation implemented
 
 ## Bonus Milestones
 
 - [x] Docker support (Dockerfile + docker-compose)
-- [x] CI/CD pipeline (GitHub Actions: lint, tests, frontend build, scheduled reminders)
-- [x] Redis caching
-- [x] Rate limiting
+- [x] CI/CD pipeline (GitHub Actions: lint, migrate, tests, frontend build, scheduled reminders)
+- [x] Redis caching (live on Render Key Value)
+- [x] Rate limiting (Redis-backed, verified returning 429)
 - [x] Integration tests
 
 ## Additional (beyond spec)
 
-- [x] Resilient multi-provider LLM layer (Gemini with Groq fallback)
+- [x] Resilient multi-provider LLM layer (Gemini 2.5-flash with Groq fallback)
 - [x] Deterministic citation verification with grounding scores
-- [x] Second integration with two-way Telegram action updates
+- [x] Second integration (Discord, code-complete)
+- [x] Conversational Telegram assistant (Groq) with two-way action buttons
+- [x] Log a meeting from Telegram by pasting a transcript or uploading a file
 - [x] Live streaming analysis over SSE
 - [x] Interactive transcript with click-to-source citations
+- [x] Transcript file upload in the web app (txt / vtt / srt)
 - [x] Semantic search across meetings (pgvector)
 - [x] Analytics dashboard
 - [x] Premium, distinctive frontend (3D hero, custom branding)
 - [x] Public OpenAPI / Swagger at `/api/docs`
-- [x] `/health` and `/api/evaluation` endpoints
+- [x] `/health` and `/api/evaluation` endpoints (both populated)
+- [x] `REPOSITORY_URL` and `DEPLOYED_URL` set on the live API
+- [x] GitHub Actions reminder cron enabled (API_URL + CRON_SECRET secrets)
 
-## To complete at submission time
+## Post-grading
 
-- [ ] Set `REPOSITORY_URL` and `DEPLOYED_URL` env vars on the deployed API (surface in `/api/evaluation`)
-- [ ] Confirm candidate display name in `/api/evaluation`
-- [ ] Add `GEMINI_API_KEY` (and optional `GROQ_API_KEY`, `REDIS_URL`, Telegram/Discord secrets) to the deployment
-- [ ] Set GitHub repo secrets `API_URL` and `CRON_SECRET` to enable the reminder cron
+- [ ] Rotate Gemini / Groq keys, Telegram bot token, and Render API key
+- [ ] (Optional) Configure a live Discord webhook to activate the second channel
