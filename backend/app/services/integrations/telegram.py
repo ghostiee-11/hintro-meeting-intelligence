@@ -76,6 +76,31 @@ class TelegramService:
             {"chat_id": chat_id, "message_id": message_id, "text": text, "parse_mode": "Markdown"},
         )
 
+    async def send_message(self, chat_id: int | str, text: str) -> SendResult:
+        """Sends a plain chat message (used by the conversational assistant)."""
+        return await self._call("sendMessage", {"chat_id": chat_id, "text": text})
+
+    async def send_chat_action(self, chat_id: int | str, action: str = "typing") -> None:
+        await self._call("sendChatAction", {"chat_id": chat_id, "action": action})
+
+    async def download_file(self, file_id: str) -> str | None:
+        """Resolves a Telegram file_id to its text content (for transcript uploads)."""
+        if not self.is_configured():
+            return None
+        try:
+            async with httpx.AsyncClient(timeout=30) as client:
+                meta = await client.get(
+                    f"https://api.telegram.org/bot{self._token}/getFile",
+                    params={"file_id": file_id},
+                )
+                path = meta.json().get("result", {}).get("file_path")
+                if not path:
+                    return None
+                resp = await client.get(f"https://api.telegram.org/file/bot{self._token}/{path}")
+                return resp.text
+        except Exception:  # noqa: BLE001
+            return None
+
     async def _call(self, method: str, body: dict) -> SendResult:
         import json
 

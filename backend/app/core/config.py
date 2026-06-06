@@ -38,6 +38,8 @@ class Settings(BaseSettings):
     telegram_bot_token: str | None = None
     telegram_chat_id: str | None = None
     discord_webhook_url: str | None = None
+    # The Hintro account the Telegram assistant acts on behalf of.
+    telegram_owner_email: str = "demo@hintro.ai"
 
     # Scheduler
     cron_secret: str = "change-me-cron-secret"
